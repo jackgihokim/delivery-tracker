@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-card class="form-card">
+      <form [formGroup]="trackingForm" (ngSubmit)="trackDelivery()">
+        <ion-item class="form-item">
+          <ion-label position="floating">택배사</ion-label>
+          <ion-select formControlName="companyCode" placeholder="택배사 선택" required>
+            <ion-select-option *ngFor="let company of companies" value="{{company.code}}">{{company.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="form-item">
+          <ion-label position="floating">송장번호</ion-label>
+          <ion-input type="text" formControlName="invoiceNumber" class="form-control" required></ion-input>
+        </ion-item>
+        <ion-button type="submit" [disabled]="!trackingForm.valid"  class="form-item form-button" expand="block" fill="outline">조회하기</ion-button>
+      </form>
+    </ion-card>
+    <ion-card *ngIf="trackingData" class="tracking-info">
+      <ion-card-header>
+        <small class="text-invoice-number">운송장 번호</small>
+        <ion-card-title>{{trackingForm.value.invoiceNumber}}</ion-card-title>
+        <ion-card-subtitle>{{getCompanyName(trackingForm.value.companyCode)}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-grid>
+        <ion-row class="grid-column">
+          <ion-col>시간</ion-col>
+          <ion-col>현재 위치</ion-col>
+          <ion-col>배송 상태</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let detail of trackingData.trackingDetails; let i = index"
+                 [ngClass]="{'bold-item': i === trackingData.trackingDetails.length - 1}" class="grid-row">
+          <ion-col>{{detail.timeString}}</ion-col>
+          <ion-col>{{detail.where}}</ion-col>
+          <ion-col>{{detail.kind}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+</ion-content>

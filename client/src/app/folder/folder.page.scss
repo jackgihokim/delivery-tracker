@@ -1,0 +1,70 @@
+ion-content {
+  height: 100%;
+}
+
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
+ion-card-header {
+  background-color: var(--ion-color-primary);
+
+  ion-card-subtitle {
+    color: black;
+  }
+}
+
+#container {
+  height: 88%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+.form-card {
+  width: 50%;
+  margin: 30px auto;
+}
+
+.tracking-info {
+  width: 50%;
+  margin: 30px auto;
+}
+
+.grid-column {
+  padding: 10px 0;
+  color: black;
+  background-color: #cccccc;
+}
+
+.grid-row {
+  padding: 10px 0;
+  border-bottom: 1px solid #9d9fa6;
+}
+
+.text-invoice-number {
+  color: black;
+}
+
+.bold-item {
+  font-weight: bold;
+}
